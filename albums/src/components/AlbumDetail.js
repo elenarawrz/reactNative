@@ -1,15 +1,11 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 
-function onPress() {
-  console.log('holi2');
-}
-
 const AlbumDetail = ({ album }) => {
-  const { thumbnail_image, title, artist, image } = album;
+  const { thumbnail_image, title, artist, image, url } = album;
   const { albumHeader, albumTitle, thumbnailContainer, thumbnail, cover } = styles;
 
   return (
@@ -30,7 +26,9 @@ const AlbumDetail = ({ album }) => {
       </CardSection>
 
       <CardSection>
-        <Button text='Buy now' onPress={onPress} />
+        <Button onPress={() => Linking.openURL(url)}>
+          Buy now
+        </Button>
       </CardSection>
     </Card>
   );
