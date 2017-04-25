@@ -4,20 +4,18 @@ import firebase from 'firebase';
 import { Card, CardSection, Button, Input, Spinner } from './common';
 
 class LoginForm extends Component {
-  state = { email: '', password: '', error: '', isLoading: false };
+  state = { email: 'test@test.com', password: 'password', error: '', isLoading: false };
 
   onChangeEmail(email) {
     this.setState({ email });
-    console.log(this.state);
   }
 
   onChangePassword(password) {
     this.setState({ password });
-    console.log(this.state);
   }
 
   onSuccess() {
-    this.setState({ isLoading: false });
+    this.setState({ email: '', password: '', isLoading: false });
   }
 
   onFail() {
@@ -32,7 +30,6 @@ class LoginForm extends Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onSuccess.bind(this))
       .catch(this.createUser.bind(this));
-    console.log('click!');
   }
 
   createUser() {
@@ -40,12 +37,6 @@ class LoginForm extends Component {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(this.onSuccess.bind(this))
       .catch(this.onFail.bind(this));
-  }
-
-  showProgress() {
-    if (this.state.isLoading) {
-      return <Spinner size='small' />;
-    }
   }
 
   render() {
@@ -71,8 +62,8 @@ class LoginForm extends Component {
         </CardSection>
 
         <Text style={styles.error}>{this.state.error}</Text>
-        {this.showProgress()}
-        
+        { !this.state.isLoading || <Spinner size='small' /> }
+
         <CardSection>
           <Button onPress={this.onPress.bind(this)} disabled={this.state.isLoading}>Log in</Button>
         </CardSection>
