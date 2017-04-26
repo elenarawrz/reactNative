@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.easeInEaseOut();
+  }
+
   renderDescription() {
     const { expanded, item } = this.props;
     if (expanded) {
-      return <Text>{item.description}</Text>;
+      return (
+        <CardSection>
+          <Text>{item.description}</Text>
+        </CardSection>
+      );
     }
   }
 
