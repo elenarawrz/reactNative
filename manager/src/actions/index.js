@@ -3,7 +3,8 @@ import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
   AUTHENTICATE_SUCCESS,
-  AUTHENTICATE_FAIL
+  AUTHENTICATE_FAIL,
+  AUTHENTICATE
 } from './types';
 
 export const emailChanged = text => ({
@@ -18,6 +19,7 @@ export const passwordChanged = text => ({
 
 export const authenticate = ({ email, password }) =>
   dispatch => {
+    dispatch({ type: AUTHENTICATE });
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => authenticateSuccess(dispatch, user))
       .catch(() => {
@@ -36,4 +38,4 @@ const authenticateSuccess = (dispatch, user) => {
 
 const authenticateFail = dispatch => {
   dispatch({ type: AUTHENTICATE_FAIL });
-}
+};

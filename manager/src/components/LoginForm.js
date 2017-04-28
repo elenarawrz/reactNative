@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, authenticate } from '../actions';
-import { Card, CardSection, Input, Button } from './common';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -41,12 +41,17 @@ class LoginForm extends Component {
           />
         </CardSection>
         
+        { this.props.isLoading && <Spinner size='large' /> }
+        
         { !!this.props.error &&
           <Text style={styles.error}>{this.props.error}</Text>
         }
 
         <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>Log in</Button>
+          <Button
+            onPress={this.onButtonPress.bind(this)}
+            disabled={this.props.isLoading}
+          >Log in</Button>
         </CardSection>
       </Card>
     );
@@ -62,10 +67,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ auth: { email, password, error } }) => ({
+const mapStateToProps = ({ auth: { email, password, error, isLoading } }) => ({
   email,
   password,
-  error
+  error,
+  isLoading
 });
 
 export default connect(mapStateToProps, { emailChanged, passwordChanged, authenticate })(LoginForm);
