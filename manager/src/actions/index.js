@@ -35,7 +35,7 @@ const authenticateSuccess = (dispatch, user) => {
     type: AUTHENTICATE_SUCCESS,
     payload: user
   });
-  Actions.employeeList();
+  Actions.main();
 };
 
 const authenticateFail = dispatch => {

@@ -6,16 +6,19 @@ import EmployeeList from './components/EmployeeList';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{ paddingTop: 60 }}>
-      <Scene
-        key='login'
-        component={LoginForm}
-        title='Log in'
-      />
-      <Scene
-        key='employeeList'
-        component={EmployeeList}
-        title='Employees'
-      />
+      <Scene key='auth'>
+        <Scene key='login' component={LoginForm} title='Log in' />
+      </Scene>
+
+      <Scene key='main'>
+        <Scene
+          onRight={(e) => console.log(e)}
+          rightTitle='Add'
+          key='employeeList'
+          component={EmployeeList}
+          title='Employees'
+        />
+      </Scene>
     </Router>
   );
 };
