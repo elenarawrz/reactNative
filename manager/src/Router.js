@@ -4,8 +4,7 @@ import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 
-const RouterComponent = () => {
-  return (
+const RouterComponent = () => (
     <Router sceneStyle={{ paddingTop: 60 }}>
       <Scene key='auth'>
         <Scene key='login' component={LoginForm} title='Log in' />
@@ -22,7 +21,6 @@ const RouterComponent = () => {
       </Scene>
       <Scene key='employeeCreate' component={EmployeeCreate} title='Create Employee' />
     </Router>
-  );
-};
+);
 
 export default RouterComponent;
