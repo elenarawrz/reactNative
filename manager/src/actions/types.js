@@ -5,3 +5,4 @@ export const AUTHENTICATE_FAIL = 'authenticate_fail';
 export const AUTHENTICATE = 'authenticate';
 
 export const EMPLOYEE_UPDATE = 'employee_update';
+export const EMPLOYEE_CREATE = 'employee_create';
