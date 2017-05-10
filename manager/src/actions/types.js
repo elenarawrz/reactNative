@@ -6,3 +6,4 @@ export const AUTHENTICATE = 'authenticate';
 
 export const EMPLOYEE_UPDATE = 'employee_update';
 export const EMPLOYEE_CLEAN = 'employee_clean';
+export const EMPLOYEES_FETCH_SUCCESS = 'employees_fetch_success';

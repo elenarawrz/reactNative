@@ -19,7 +19,6 @@ class LoginForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardSection>
@@ -40,9 +39,9 @@ class LoginForm extends Component {
             value={this.props.password}
           />
         </CardSection>
-        
+
         { this.props.isLoading && <Spinner size='large' /> }
-        
+
         { !!this.props.error &&
           <Text style={styles.error}>{this.props.error}</Text>
         }

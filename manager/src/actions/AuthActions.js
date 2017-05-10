@@ -23,10 +23,11 @@ export const authenticate = ({ email, password }) =>
     dispatch({ type: AUTHENTICATE });
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => authenticateSuccess(dispatch, user))
-      .catch(() => {
+      .catch((e) => {
+        console.log('auth error', e);
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => authenticateSuccess(dispatch, user))
-          .catch(() => authenticateFail(dispatch));
+          .catch((err) => authenticateFail(dispatch, err));
       });
   };
 
@@ -38,6 +39,7 @@ const authenticateSuccess = (dispatch, user) => {
   Actions.main();
 };
 
-const authenticateFail = dispatch => {
+const authenticateFail = (dispatch, err) => {
+  console.log('create error', err);
   dispatch({ type: AUTHENTICATE_FAIL });
 };
